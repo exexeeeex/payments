@@ -1,0 +1,1 @@
+export { AppDataSource } from './database';

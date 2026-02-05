@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: payments_database
+    environment:
+      POSTGRES_USER: payment_user
+      POSTGRES_PASSWORD: 825ce9cbd9d275ddee638a794f022074
+      POSTGRES_DB: payments
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./infrastructure/data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d locator"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s

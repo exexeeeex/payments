@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "b6fc3efb-7c97-4898-b75b-48f0d40556cf",
+		"name": "Payments",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31255883"
+	},
+	"item": [
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "Создание платежа",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"539c3d80-9d6f-4ec6-8dc3-a479494898c6\",\r\n    \"planId\": \"73674086-4fdc-4b57-b38e-4af760d4a836\",\r\n    \"amount\": 100,\r\n    \"returnUrl\": \"https://test.com/\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/payments/create",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"payments",
+								"create"
+							]
+						},
+						"description": "Создание платежа"
+					},
+					"response": []
+				},
+				{
+					"name": "Получение статуса платежа",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/payments/get-status/{{$guid}}",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"payments",
+								"get-status",
+								"{{$guid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Эндпоинты для работы с платежами"
+		},
+		{
+			"name": "Webhooks",
+			"item": [
+				{
+					"name": "Создание вебхука",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "webhook-signature",
+								"value": "123",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"payment.succeeded\",\r\n    \"event\": {\r\n      \"id\": \"evt_123\",                \r\n      \"type\": \"payment.succeeded\",\r\n      \"payment_id\": \"pay_0.bepb657lfo9\", \r\n      \"status\": \"succeeded\",\r\n      \"amount\": {\r\n        \"value\": \"100.00\",\r\n        \"currency\": \"RUB\"\r\n      }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/webhook/",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"webhook",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
