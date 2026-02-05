@@ -12,3 +12,5 @@ docker-compose -f ./database.compose.yml
 > HOST: localhost <br/>
 > USER: payment_user <br/>
 > PASSWORD: 825ce9cbd9d275ddee638a794f022074
+
+[Postman коллекция](Payments.collection.json)
